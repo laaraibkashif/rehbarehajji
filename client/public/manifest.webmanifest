@@ -1,0 +1,22 @@
+{
+  "name": "Rehbar-e-Hajji",
+  "short_name": "Rehbar-e-Hajji",
+  "description": "Your personal pilgrimage companion — ritual planner, step counter, duas, and emergency contacts",
+  "theme_color": "#FAF8F2",
+  "background_color": "#FAF8F2",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

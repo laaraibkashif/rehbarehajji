@@ -1,0 +1,11 @@
+{
+  "hero": {
+    "background": "/images/hero-kaaba.jpg",
+    "overlay": "linear-gradient(180deg, rgba(250,248,242,0.80) 0%, rgba(250,248,242,0.55) 50%, rgba(235,227,206,0.88) 100%)"
+  },
+  "marquee": null,
+  "howItWorks": null,
+  "features": null,
+  "trust": null,
+  "footer": null
+}

@@ -1,0 +1,352 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════
+   "GUIDED LIGHT" — Design System
+   Rehbar-e-Hajji · Pilgrim Companion
+   
+   Palette, typography, and base styles for a warm,
+   editorial light-theme experience.
+   ═══════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Core Palette ── */
+  --color-paper:      #FAF8F2;
+  --color-ink:        #16241C;
+  --color-emerald:    #2F5233;
+  --color-gold:       #B8863E;
+  --color-sand:       #EBE3CE;
+  --color-clay-alert: #A64B39;
+
+  /* ── Semantic aliases (usage intent) ── */
+  --color-surface:    var(--color-paper);
+  --color-text:       var(--color-ink);
+  --color-accent:     var(--color-emerald);
+  --color-highlight:  var(--color-gold);
+  --color-muted:      rgba(22, 36, 28, 0.6);
+  --color-border:     rgba(22, 36, 28, 0.1);
+
+  /* ── Typography ── */
+  --font-display: "Fraunces", serif;
+  --font-body:    "Inter", sans-serif;
+  --font-mono:    "IBM Plex Mono", monospace;
+}
+
+/* ── CSS Custom Properties (for vanilla JS / non-Tailwind use) ── */
+
+:root {
+  --paper:      #FAF8F2;
+  --ink:        #16241C;
+  --emerald:    #2F5233;
+  --gold:       #B8863E;
+  --sand:       #EBE3CE;
+  --clay-alert: #A64B39;
+
+  --font-display: "Fraunces", serif;
+  --font-body:    "Inter", sans-serif;
+  --font-mono:    "IBM Plex Mono", monospace;
+
+  /* Cursor state — driven by CustomCursor component */
+  --cursor-scale: 1;
+  --cursor-blend: normal;
+}
+
+/* ── Base Reset & Typography ── */
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 768px) {
+  html { font-size: 17px; }
+}
+
+@media (min-width: 1024px) {
+  html { font-size: 18px; }
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.65;
+}
+
+::selection {
+  background: rgba(47, 82, 51, 0.18);
+  color: var(--ink);
+}
+
+/* ── Focus rings (WCAG AA — emerald on paper) ── */
+
+*:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Scrollbar (light theme) ── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(22, 36, 28, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(22, 36, 28, 0.25);
+}
+
+/* ── Typographic scale utility classes ── */
+
+.typo-hero {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 600;
+  font-variation-settings: "opsz" 72;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.typo-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  font-variation-settings: "opsz" 48;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.typo-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+}
+
+.typo-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.typo-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+/* ── Shared UI patterns ── */
+
+.surface-sand {
+  background-color: var(--sand);
+  border: 1px solid rgba(22, 36, 28, 0.06);
+}
+
+.surface-glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(22, 36, 28, 0.06);
+}
+
+.surface-glass:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(47, 82, 51, 0.15);
+}
+
+/* ── Button base (emerald primary) ── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: var(--emerald);
+  color: #fff;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: none;
+  line-height: 1.4;
+}
+
+.btn-primary:hover {
+  background: #3d6b42;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(47, 82, 51, 0.25);
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── Button base (gold secondary) ── */
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--ink);
+  padding: 0.625rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+  border: 1px solid rgba(22, 36, 28, 0.15);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold);
+  background: rgba(184, 134, 62, 0.08);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Input base ── */
+
+.input-base {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(22, 36, 28, 0.15);
+  background: #fff;
+  color: var(--ink);
+  padding: 0.625rem 1rem;
+  font-size: 0.9375rem;
+  font-family: var(--font-body);
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input-base::placeholder {
+  color: rgba(22, 36, 28, 0.4);
+}
+
+.input-base:focus {
+  border-color: var(--emerald);
+  box-shadow: 0 0 0 3px rgba(47, 82, 51, 0.12);
+}
+
+/* ── Card base (sand) ── */
+
+.card-sand {
+  background: var(--sand);
+  border-radius: 1rem;
+  border: 1px solid rgba(22, 36, 28, 0.06);
+}
+
+/* ── Touch targets (a11y) ── */
+
+button:not(.inline-link),
+input, select, textarea,
+a:has(svg):not(.inline-link) {
+  min-height: 44px;
+}
+
+label {
+  min-height: auto;
+}
+
+/* ── Legacy animation keyframes (StarField, etc.) ── */
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 1; }
+}
+
+@keyframes drift {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(10px, -8px) rotate(2deg); }
+  50%  { transform: translate(-5px, 12px) rotate(-1deg); }
+  75%  { transform: translate(8px, 4px) rotate(1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.animate-twinkle {
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 20s ease-in-out infinite;
+}
+
+/* ── Admin layout fade-in transition ── */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out both;
+}
+
+/* ── Live preview panel slide-in ── */
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.3s ease-out both;
+}
+
+/* ── Reduced-motion kill switch ── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .custom-cursor { display: none; }
+}
+
+/* ── Utility classes ── */
+
+.min-touch {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
